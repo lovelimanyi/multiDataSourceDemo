@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xianjinxia.multiDatasource.lightningcash.dao.AssetBorrowOrderMapper" >
+
+  <!--<select id="getOrderInfo" parameterType="Integer" resultType="Map">-->
+    <!--select r.repay_channel as repayChannel,a.merchant_number as merchantNum-->
+    <!--from asset_borrow_order a-->
+    <!--LEFT JOIN asset_repayment r on a.id=r.asset_order_id-->
+    <!--where-->
+        <!--a.id = #{assetOrderId}-->
+  <!--</select>-->
+
+  <select id="getOrderInfo" parameterType="Integer" resultType="Map">
+    select *
+    from asset_borrow_order a
+    LEFT JOIN asset_repayment r on a.id=r.asset_order_id
+    where
+    a.id = #{assetOrderId}
+  </select>
+
+</mapper>

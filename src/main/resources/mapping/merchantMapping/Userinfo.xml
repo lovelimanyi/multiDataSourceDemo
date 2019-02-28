@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xianjinxia.multiDatasource.back.dao.IUserinfoDao">
+  <resultMap id="BaseResultMap" type="com.xianjinxia.multiDatasource.back.domain.Userinfo">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="user_Name" jdbcType="VARCHAR" property="userName" />
+    <result column="user_Login_Name" jdbcType="VARCHAR" property="userLoginName" />
+    <result column="user_pwd" jdbcType="VARCHAR" property="userPwd" />
+    <result column="status" jdbcType="CHAR" property="status" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="create_by" jdbcType="BIGINT" property="createBy" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="descript" jdbcType="VARCHAR" property="descript" />
+    <result column="last_login_time" jdbcType="TIMESTAMP" property="lastLoginTime" />
+    <result column="mobile" jdbcType="VARCHAR" property="mobile" />
+    <result column="allChannel"  property="allChannel" />
+    <result column="allChannelYoumi"  property="allChannelYoumi" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, user_Name, user_Login_Name, user_pwd, status, create_time, create_by, update_time,
+    update_by, descript, last_login_time,mobile, allChannel, allChannelYoumi
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="Long" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from user_Info
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+
+</mapper>

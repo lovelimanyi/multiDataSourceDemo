@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xianjinxia.multiDatasource.cms.dao.AlipayInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.xianjinxia.multiDatasource.cms.domain.AlipayInfo" >
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="alipayName" property="alipayName" jdbcType="VARCHAR" />
+    <result column="alipayOrderNo" property="alipayOrderNo" jdbcType="VARCHAR" />
+    <result column="alipayPhone" property="alipayPhone" jdbcType="VARCHAR" />
+    <result column="alipayRemark" property="alipayRemark" jdbcType="VARCHAR" />
+    <result column="moneyAmount" property="moneyAmount" jdbcType="DOUBLE" />
+    <result column="remarkName" property="remarkName" jdbcType="VARCHAR" />
+    <result column="remarkPhone" property="remarkPhone" jdbcType="VARCHAR" />
+    <result column="repayTimeStr" property="repayTimeStr" jdbcType="TIMESTAMP" />
+    <result column="status" property="status" jdbcType="TINYINT" />
+    <result column="alipayStatus" property="alipayStatus" jdbcType="TINYINT" />
+    <result column="type" property="type" jdbcType="TINYINT" />
+    <result column="loanOrderNo" property="loanOrderNo" jdbcType="VARCHAR" />
+    <result column="merchantNum" property="merchantNum" jdbcType="VARCHAR" />
+    <result column="repayAccountTime" jdbcType="TIMESTAMP" property="repayAccountTime" />
+    <result column="createtime" property="createtime" jdbcType="TIMESTAMP" />
+    <result column="marker" property="marker" jdbcType="VARCHAR" />
+    <result column="repayAlipayAcount" property="repayAlipayAcount" jdbcType="TINYINT" />
+    <result column="repay_alipay_acount_remark" property="repayAlipayAcountStr" jdbcType="VARCHAR" />
+    <result column="loan_subject_remark" property="loanSubjectRemark" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+   id, alipayName, alipayOrderNo, alipayPhone, alipayRemark, moneyAmount, remarkName,
+    remarkPhone, repayTimeStr, alipayStatus,type,loanOrderNo,merchantNum,createtime,repayAccountTime,marker,repayAlipayAcount,loanSubject
+  </sql>
+
+
+  <select id="selectAlipayList" resultMap="BaseResultMap" parameterType="com.xianjinxia.multiDatasource.cms.domain.AlipayList" >
+    SELECT <include refid="Base_Column_List"/>
+    FROM alipayinfo  where
+    status=1
+    <if test="id!=null">
+      and id=#{id}
+    </if>
+    <if test="alipayOrderNo!=null">
+      and alipayOrderNo=#{alipayOrderNo}
+    </if>
+    <if test="alipayPhone!=null">
+      and alipayPhone=#{alipayPhone}
+    </if>
+    <if test="remarkName!=null">
+      and remarkName=#{remarkName}
+    </if>
+    <if test="loanOrderNo!=null">
+      and loanOrderNo=#{loanOrderNo}
+    </if>
+    <if test="remarkPhone!=null">
+      and remarkPhone=#{remarkPhone}
+    </if>
+    <if test="alipayStatus!=null">
+      and alipayStatus=#{alipayStatus}
+    </if>
+    <if test="merchantNum!=null">
+      and merchantNum=#{merchantNum}
+    </if>
+    <if test="startTime!=null">
+      <![CDATA[    and repayTimeStr >= concat(#{startTime,jdbcType=VARCHAR}, ' 00:00:00') ]]>
+    </if>
+    <if test="endTime!=null">
+      <![CDATA[    and repayTimeStr <= concat(#{endTime,jdbcType=VARCHAR}, ' 23:59:59') ]]>
+    </if>
+    <if test="repayAlipayAcount!=null">
+      and repayAlipayAcount=#{repayAlipayAcount}
+    </if>
+    <if test="loanSubject!=null">
+      and loanSubject=#{loanSubject}
+    </if>
+    ORDER by alipayStatus ASC , repayAccountTime DESC
+  </select>
+</mapper>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <include resource="org/springframework/boot/logging/logback/base.xml"/>
+    <springProperty scope="context" name="log_path" source="logging.path"/>
+    <springProperty scope="context" name="log_level" source="logging.level"/>
+    <!-- 控制台日志  -->
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d [%thread] %-5p [%c] [%F:%L] - %msg%n</pattern>
+            <charset>GBK</charset>
+        </encoder>
+    </appender>
+
+    <!-- cuishou.log -->
+    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <File>${log_path}/cuishou.log</File>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${log_path}/cuishou-log-%d{yyyy-MM-dd}.log.%i</fileNamePattern>
+            <!--保存30天的日志-->
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>100MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <charset>utf-8</charset>
+            <Pattern>%d %-5level [%thread] %logger{0}: %msg%n</Pattern>
+        </encoder>
+    </appender>
+    <!-- 控制台日志级别 -->
+    <root level="info">
+        <appender-ref ref="STDOUT" />
+    </root>
+
+    <springProfile name="local">
+        <root level="${log_level}">
+            <appender-ref ref="FILE"/>
+        </root>
+    </springProfile>
+
+
+
+</configuration>
