@@ -9,6 +9,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -27,9 +29,6 @@ public class MultiDatasourceApplicationTests {
 		list.add("4");
 
 		list.remove(2);
-
-
-
 	}
 
 
@@ -39,9 +38,30 @@ public class MultiDatasourceApplicationTests {
 	public void test2(){
 
 		System.out.println("111111");
-		setUserPermissionExcelFields();
-//		promotionThirdExcelFields = promotionThirdExcelFields;
-//		promotionThirdExcelEieldKeys = promotionThirdExcelEieldKeys;
+		String str = String.valueOf(null);
+
+		System.out.println("222222");
+
+	}
+
+
+	public static boolean isNumber(String str){
+		Pattern pattern = Pattern.compile("[0-9]*");
+		Matcher isNum = pattern.matcher(str);
+		return isNum.matches();
+	}
+
+
+
+	@Test
+	public void test3(){
+
+		System.out.println("111111");
+
+		String str = "545455";
+		String str2 = "5645645sdfdsf";
+		boolean re = isNumber(str);
+		boolean re2 = isNumber(str2);
 
 		System.out.println("222222");
 

@@ -1,0 +1,56 @@
+
+
+        <span style=""> 导入模板下载: <a href="xiaoShou/downloadTemplate" style="color :red;" >【下载Excel模板】</a></span>
+		
+		
+		
+		
+    /**
+     * 下载数据导入模板
+     *
+     * @param request
+     * @param response
+     */
+    @RequestMapping("downloadTemplate")
+    public void downloadTemplate(HttpServletRequest request, HttpServletResponse response) {
+        try {
+            String fileName = "有米导入模板";
+            String finalName = "有米导入模板";
+            downloadFile(response, request, fileName, finalName);
+        } catch (Exception e) {
+            logger.error("下载模板失败！");
+            e.printStackTrace();
+        }
+    }
+
+
+
+    public HttpServletResponse downloadFile(HttpServletResponse response, HttpServletRequest request, String filename, String finalName) {
+        try {
+
+            //获取文件的路径
+            StringBuilder sb = new StringBuilder();
+            sb.append(File.separator).append("resources").append(File.separator).append("excelTemplate").append(File.separator).append(filename).append(".xlsx");
+            String excelPath = request.getSession().getServletContext().getRealPath(sb.toString());
+            String fileName = finalName + ".xlsx".toString(); // 文件的默认保存名
+
+            response.setCharacterEncoding("utf-8");
+            response.setContentType("multipart/form-data");
+            response.setHeader("Content-Disposition", "attachment;fileName=" + URLEncoder.encode(fileName, "UTF-8"));
+
+            InputStream in = new FileInputStream(new File(excelPath));
+            OutputStream os = response.getOutputStream();
+            byte[] b = new byte[2048];
+            int length;
+            while ((length = in.read(b)) > 0) {
+                os.write(b, 0, length);
+            }
+            os.close();
+            in.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }

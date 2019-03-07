@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xianjinxia.multiDatasource.lmy.dao.Table1Mapper" >
+    <resultMap id="BaseResultMap" type="com.xianjinxia.multiDatasource.lmy.domain.Student">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="name" property="name" jdbcType="VARCHAR" />
+        <result column="age" property="age" jdbcType="VARCHAR" />
+        <result column="course" property="course" jdbcType="VARCHAR" />
+    </resultMap>
+
+
+    <!--<resultMap type="java.util.Map" id="resultjcm">-->
+        <!--<result property="FLD_NUMBER" column="FLD_NUMBER"  javaType="double" jdbcType="NUMERIC"/>-->
+        <!--<result property="FLD_VARCHAR" column="FLD_VARCHAR" javaType="string" jdbcType="VARCHAR"/>-->
+        <!--<result property="FLD_DATE" column="FLD_DATE" javaType="java.sql.Date" jdbcType="DATE"/>-->
+        <!--<result property="FLD_INTEGER" column="FLD_INTEGER"  javaType="int" jdbcType="INTEGER"/>-->
+        <!--<result property="FLD_DOUBLE" column="FLD_DOUBLE"  javaType="double" jdbcType="DOUBLE"/>-->
+        <!--<result property="FLD_LONG" column="FLD_LONG"  javaType="long" jdbcType="INTEGER"/>-->
+        <!--<result property="FLD_CHAR" column="FLD_CHAR"  javaType="string" jdbcType="CHAR"/>-->
+        <!--<result property="FLD_BLOB" column="FLD_BLOB"  javaType="[B" jdbcType="BLOB" />-->
+        <!--<result property="FLD_CLOB" column="FLD_CLOB"  javaType="string" jdbcType="CLOB"/>-->
+        <!--<result property="FLD_FLOAT" column="FLD_FLOAT"  javaType="float" jdbcType="FLOAT"/>-->
+        <!--<result property="FLD_TIMESTAMP" column="FLD_TIMESTAMP"  javaType="java.sql.Timestamp" jdbcType="TIMESTAMP"/>-->
+    <!--</resultMap>-->
+
+
+    <select id="selectAll" resultType="map">
+        select *
+        from table1
+    </select>
+
+    <select id="selectAllStudentById" parameterType="Integer" resultMap="BaseResultMap">
+        select *
+        from table1
+        where id = #{id}
+    </select>
+
+</mapper>
