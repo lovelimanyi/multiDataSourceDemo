@@ -1,0 +1,37 @@
+
+
+
+
+1
+功能测试在测试类RedisTest类中；
+
+2
+使用redis需添加相关配置、工具类：
+JedisDataClient、
+ObjectTranscoderUtil、
+RedisConfigConstant、
+RedisExpireTest、
+
+redis.properties
+
+3
+添加依赖：
+		<dependency>
+			<groupId>redis.clients</groupId>
+			<artifactId>jedis</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>commons-collections</groupId>
+			<artifactId>commons-collections</artifactId>
+		</dependency>
+
+
+4
+实际应用demo可参照催收系统-电销分单方法：在上面DistributeXiaoShouOrderService文件中；
+
+5
+实际应用说明：
+存储格式为：
+{"companyId":"6d270c23112e49e9a6207be3e5a52c2b","currentOrderCount":0,"id":15816,"roleId":"10036","userName":"坐席001号","userStatus":1,
+"uuid":"ff751247ebe74fe188d31cd2d1e1f33e"}
+
