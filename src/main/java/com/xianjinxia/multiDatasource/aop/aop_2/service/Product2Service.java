@@ -1,9 +1,9 @@
-package com.xianjinxia.multiDatasource.aop.service;
+package com.xianjinxia.multiDatasource.aop.aop_2.service;
 
 import org.springframework.stereotype.Component;
 
 @Component
-public class ProductService {
+public class Product2Service {
     public String getName(){
         System.out.println("execute get name");
         return "product service";
@@ -20,10 +20,5 @@ public class ProductService {
 
     public void findByTwoArgs(Long id,String name){
         System.out.println("execute find by id and name");
-    }
-
-    //    @Override
-    public void log() {
-        System.out.println("log from product service");
     }
 }
