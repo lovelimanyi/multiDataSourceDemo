@@ -14,7 +14,8 @@ public class Sort_Test {
     @Test
     public void test46464(){
         int[] arr= {6,9,8,1,2,3,7,4,6};
-        insertSort(arr);
+        int arr2[] = insertSort(arr);
+        System.out.println();
     }
 
     //插入排序
@@ -70,4 +71,5 @@ public class Sort_Test {
             System.out.println(i);
         }
     }
+
 }
