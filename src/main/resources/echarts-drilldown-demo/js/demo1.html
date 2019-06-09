@@ -12,7 +12,7 @@
             width: 915px;
             border: 1px solid #ccc;
         }
-        #barsDemo {
+        #container {
             width: 100%;
             height: 400px;
         }
@@ -23,7 +23,7 @@
     <button id='return-button' value=''>back</button>
 </div>
 <div class="section">
-    <div id="barsDemo"></div>
+    <div id="container"></div>
 </div>
 
 <script src="../js/jquery-3.2.1.min.js"></script>
@@ -60,6 +60,7 @@
                 label: {
                     normal: {
                         show: true, //显示数据
+                        formatter:'{c}%',
                         position: 'top'//显示数据位置 'top/right/left/insideLeft/insideRight/insideTop/insideBottom'
                     }
                 } ,
@@ -74,7 +75,7 @@
 
     //生成Echarts图形
     function buildChart(legendData, axisLabel, seriesValue) {
-        var chart = document.getElementById('barsDemo');
+        var chart = document.getElementById('container');
         var echart = echarts.init(chart);
         var option = {
             title: {
